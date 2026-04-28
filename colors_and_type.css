@@ -1,0 +1,218 @@
+/* =========================================================
+   Rosedale Park Radio Patrol — Colors & Type
+   Forest green + gold palette. Civic, trustworthy, neighborly.
+   ========================================================= */
+
+/* Google Fonts — substitutions flagged in README */
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&family=Source+Sans+3:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+
+:root {
+  /* ----- PRIMARY: Forest Green ----- */
+  --forest-950: #0C1F17;   /* deepest, near black */
+  --forest-900: #132A20;   /* backgrounds, heavy type on light */
+  --forest-800: #1C3B2E;   /* PRIMARY brand green */
+  --forest-700: #255040;   /* hovers against 800 */
+  --forest-600: #2F6851;   /* accents, links on light */
+  --forest-500: #3E8167;   /* illustrative */
+  --forest-400: #6AA78E;   /* tints */
+  --forest-300: #9CC6B4;
+  --forest-200: #CCE1D6;   /* surface tint */
+  --forest-100: #E6F0EB;   /* subtle backgrounds */
+  --forest-50:  #F3F7F4;   /* page wash */
+
+  /* ----- ACCENT: Gold ----- */
+  --gold-900: #6B5621;
+  --gold-800: #8A7031;
+  --gold-700: #A88740;
+  --gold-600: #C8A24B;    /* PRIMARY brand gold */
+  --gold-500: #D6B467;
+  --gold-400: #E3C889;
+  --gold-300: #EDD9AE;
+  --gold-200: #F5E8CD;
+  --gold-100: #FAF3E3;
+
+  /* ----- NEUTRALS: Warm stone ----- */
+  --stone-950: #171513;
+  --stone-900: #26231F;
+  --stone-800: #3A3630;
+  --stone-700: #544E46;
+  --stone-600: #726B60;
+  --stone-500: #948C7F;
+  --stone-400: #B8B0A3;
+  --stone-300: #D5CEC2;
+  --stone-200: #E8E2D5;
+  --stone-100: #F3EFE6;
+  --stone-50:  #FAF7F1;   /* paper / page background */
+  --white:     #FFFFFF;
+
+  /* ----- SEMANTIC ----- */
+  --danger:  #B83A2E;    /* emergency red — used sparingly for 911/alerts */
+  --danger-bg: #FCEDEA;
+  --warn:    #C8891E;    /* advisory amber */
+  --warn-bg: #FBF1DC;
+  --info:    #2F6851;    /* lives in forest family */
+  --info-bg: #E6F0EB;
+  --success: #3E8167;
+  --success-bg: #E6F0EB;
+
+  /* ----- FOREGROUND / BACKGROUND TOKENS ----- */
+  --bg:       var(--stone-50);
+  --bg-elev:  var(--white);
+  --bg-sunk:  var(--stone-100);
+  --bg-brand: var(--forest-800);
+  --bg-brand-deep: var(--forest-950);
+
+  --fg:       var(--stone-900);
+  --fg-muted: var(--stone-600);
+  --fg-subtle:var(--stone-500);
+  --fg-on-brand: var(--stone-50);
+  --fg-on-gold:  var(--forest-900);
+
+  --border:        var(--stone-200);
+  --border-strong: var(--stone-300);
+  --border-brand:  var(--forest-700);
+
+  --link:       var(--forest-700);
+  --link-hover: var(--forest-900);
+
+  /* ----- TYPOGRAPHY ----- */
+  /* Display: Oswald — condensed, industrial sans. Evokes civic signage /
+     police-dept / signpainted feel. Sub for League Gothic / Anton. */
+  --font-display: 'Oswald', 'Arial Narrow', sans-serif;
+  /* Body sans: Source Sans 3 — clean, readable, civic. */
+  --font-sans:    'Source Sans 3', system-ui, -apple-system, Segoe UI, sans-serif;
+  /* Serif: Source Serif 4 — warm, newsprint-adjacent; used for longform,
+     quotes, historic-district nods. */
+  --font-serif:   'Source Serif 4', 'Georgia', 'Times New Roman', serif;
+  /* Mono: JetBrains Mono — callsigns, codes, radio IDs. */
+  --font-mono:    'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  /* Type scale — modular, 1.200 minor third for UI, looser on display */
+  --text-xs:   12px;
+  --text-sm:   14px;
+  --text-base: 16px;
+  --text-md:   18px;
+  --text-lg:   20px;
+  --text-xl:   24px;
+  --text-2xl:  30px;
+  --text-3xl:  38px;
+  --text-4xl:  48px;
+  --text-5xl:  64px;
+  --text-6xl:  84px;
+
+  --leading-tight:   1.1;
+  --leading-snug:    1.25;
+  --leading-normal:  1.5;
+  --leading-relaxed: 1.65;
+
+  --tracking-tight:  -0.01em;
+  --tracking-normal: 0;
+  --tracking-wide:   0.04em;
+  --tracking-wider:  0.08em;
+  --tracking-widest: 0.14em; /* for display eyebrows / all-caps labels */
+
+  /* ----- SPACING ----- */
+  --space-0:  0;
+  --space-1:  4px;
+  --space-2:  8px;
+  --space-3:  12px;
+  --space-4:  16px;
+  --space-5:  20px;
+  --space-6:  24px;
+  --space-8:  32px;
+  --space-10: 40px;
+  --space-12: 48px;
+  --space-16: 64px;
+  --space-20: 80px;
+  --space-24: 96px;
+
+  /* ----- RADII ----- */
+  --radius-0: 0;
+  --radius-sm: 2px;   /* default — civic signage feel */
+  --radius:    4px;
+  --radius-md: 6px;
+  --radius-lg: 10px;
+  --radius-pill: 999px;
+
+  /* ----- SHADOWS ----- */
+  --shadow-xs: 0 1px 0 rgba(19, 42, 32, 0.06);
+  --shadow-sm: 0 1px 2px rgba(19, 42, 32, 0.08), 0 0 0 1px rgba(19, 42, 32, 0.04);
+  --shadow:    0 2px 6px rgba(19, 42, 32, 0.10), 0 1px 2px rgba(19, 42, 32, 0.06);
+  --shadow-md: 0 6px 16px rgba(19, 42, 32, 0.12), 0 2px 4px rgba(19, 42, 32, 0.06);
+  --shadow-lg: 0 16px 32px rgba(19, 42, 32, 0.18), 0 4px 8px rgba(19, 42, 32, 0.08);
+
+  /* ----- TRANSITIONS ----- */
+  --ease:        cubic-bezier(0.2, 0.8, 0.2, 1);
+  --ease-out:    cubic-bezier(0.16, 1, 0.3, 1);
+  --dur-fast:   120ms;
+  --dur:        200ms;
+  --dur-slow:   320ms;
+}
+
+/* =========================================================
+   Semantic base styles — drop the stylesheet, inherit a
+   reasonable civic-document baseline.
+   ========================================================= */
+
+html { font-family: var(--font-sans); color: var(--fg); background: var(--bg); -webkit-font-smoothing: antialiased; }
+body { font-size: var(--text-base); line-height: var(--leading-normal); margin: 0; }
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  letter-spacing: var(--tracking-normal);
+  color: var(--forest-900);
+  line-height: var(--leading-tight);
+  text-transform: uppercase;
+  margin: 0 0 var(--space-4);
+}
+h1 { font-size: var(--text-5xl); letter-spacing: 0.01em; }
+h2 { font-size: var(--text-3xl); }
+h3 { font-size: var(--text-2xl); }
+h4 { font-size: var(--text-xl);  letter-spacing: var(--tracking-wide); }
+h5 { font-size: var(--text-md);  letter-spacing: var(--tracking-wide); }
+h6 { font-size: var(--text-sm);  letter-spacing: var(--tracking-widest); }
+
+/* Eyebrow label — small caps feel */
+.eyebrow {
+  font-family: var(--font-sans);
+  font-weight: 700;
+  font-size: var(--text-xs);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-widest);
+  color: var(--gold-700);
+}
+
+p { margin: 0 0 var(--space-4); max-width: 68ch; }
+.lede { font-family: var(--font-serif); font-size: var(--text-lg); line-height: var(--leading-relaxed); color: var(--fg); }
+
+a { color: var(--link); text-decoration: underline; text-underline-offset: 2px; text-decoration-thickness: 1px; transition: color var(--dur) var(--ease); }
+a:hover { color: var(--link-hover); text-decoration-thickness: 2px; }
+
+blockquote {
+  border-left: 3px solid var(--gold-600);
+  padding: var(--space-2) var(--space-5);
+  margin: var(--space-6) 0;
+  font-family: var(--font-serif);
+  font-style: italic;
+  color: var(--fg);
+}
+
+code, kbd, samp, .callsign {
+  font-family: var(--font-mono);
+  font-size: 0.92em;
+  background: var(--stone-100);
+  padding: 2px 6px;
+  border-radius: var(--radius-sm);
+  color: var(--forest-900);
+}
+
+hr { border: 0; border-top: 1px solid var(--border); margin: var(--space-8) 0; }
+small { font-size: var(--text-sm); color: var(--fg-muted); }
+
+/* Focus — gold ring against either bg */
+:focus-visible {
+  outline: 2px solid var(--gold-600);
+  outline-offset: 2px;
+  border-radius: var(--radius-sm);
+}
