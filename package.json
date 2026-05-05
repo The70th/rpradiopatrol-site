@@ -1,0 +1,10 @@
+{
+  "name": "rpradiopatrol-site",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Rosedale Park Radio Patrol #23 — public website + membership application.",
+  "dependencies": {
+    "pdf-lib": "^1.17.1",
+    "resend": "^3.0.0"
+  }
+}

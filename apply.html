@@ -1,0 +1,500 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Apply · Rosedale Park Radio Patrol #23</title>
+  <meta name="description" content="Membership application for Rosedale Park Radio Patrol #23 — DPD-sanctioned volunteer neighborhood watch.">
+  <link rel="icon" type="image/png" href="assets/logo-forest-transparent.png">
+  <link rel="stylesheet" href="colors_and_type.css">
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    .rp-apply { padding: 64px 0 96px; background: var(--stone-50); }
+    .rp-apply-inner { max-width: 880px; margin: 0 auto; padding: 0 32px; }
+    .rp-apply h1 {
+      font-family: var(--font-display); font-size: clamp(36px, 5vw, 56px);
+      text-transform: uppercase; color: var(--forest-900);
+      margin: 8px 0 16px; line-height: 0.98;
+    }
+    .rp-apply .intro {
+      font-family: var(--font-serif); color: var(--fg);
+      font-size: 17px; line-height: 1.55; margin: 0 0 32px; max-width: 64ch;
+    }
+    .rp-apply fieldset {
+      border: 1px solid var(--border); background: var(--white);
+      padding: 20px 24px 24px; margin: 0 0 20px; border-radius: var(--radius);
+    }
+    .rp-apply legend {
+      font-family: var(--font-sans); font-size: 12px; font-weight: 700;
+      letter-spacing: var(--tracking-widest); text-transform: uppercase;
+      color: var(--gold-700); padding: 0 8px;
+    }
+    .rp-grid { display: grid; gap: 14px 18px; }
+    .rp-grid-2 { grid-template-columns: 1fr 1fr; }
+    .rp-grid-3 { grid-template-columns: 2fr 1fr 1fr; }
+    .rp-grid-4 { grid-template-columns: 1fr 1fr 1fr 1fr; }
+    .rp-field { display: flex; flex-direction: column; gap: 6px; }
+    .rp-field label {
+      font-family: var(--font-sans); font-size: 12px; font-weight: 700;
+      letter-spacing: 0.06em; text-transform: uppercase; color: var(--forest-800);
+    }
+    .rp-field input, .rp-field textarea {
+      font-family: var(--font-sans); font-size: 15px;
+      padding: 10px 12px; border: 1px solid var(--border-strong);
+      background: var(--white); color: var(--fg);
+      border-radius: var(--radius-sm); transition: border-color var(--dur) var(--ease);
+    }
+    .rp-field input:focus, .rp-field textarea:focus {
+      outline: 2px solid var(--gold-600); outline-offset: 1px;
+      border-color: var(--forest-700);
+    }
+    .rp-field input[readonly] { background: var(--stone-100); color: var(--fg-muted); }
+    .rp-field textarea { resize: vertical; min-height: 64px; }
+
+    .rp-sig-wrap {
+      border: 1px dashed var(--forest-700); border-radius: var(--radius-sm);
+      background: var(--white); position: relative;
+    }
+    .rp-sig-wrap canvas {
+      display: block; width: 100%; height: 160px; touch-action: none;
+      background: var(--white); border-radius: var(--radius-sm);
+    }
+    .rp-sig-actions {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 8px 12px; border-top: 1px solid var(--border);
+      font-family: var(--font-sans); font-size: 12px; color: var(--fg-muted);
+    }
+    .rp-sig-clear {
+      font-family: var(--font-sans); font-size: 12px; font-weight: 700;
+      letter-spacing: 0.06em; text-transform: uppercase;
+      background: transparent; border: 1px solid var(--forest-800);
+      color: var(--forest-800); padding: 6px 14px; border-radius: var(--radius-sm);
+      cursor: pointer; transition: background var(--dur) var(--ease);
+    }
+    .rp-sig-clear:hover { background: var(--forest-100); }
+
+    .rp-privacy {
+      border: 2px solid var(--forest-800); background: var(--stone-100);
+      padding: 18px 22px; margin: 28px 0; border-radius: var(--radius);
+      font-family: var(--font-serif); font-size: 14px; line-height: 1.55;
+      color: var(--fg);
+    }
+    .rp-privacy h3 {
+      font-family: var(--font-display); font-size: 16px;
+      letter-spacing: 0.04em; color: var(--forest-900); margin: 0 0 10px;
+    }
+
+    .rp-submit-row {
+      display: flex; gap: 16px; align-items: center; flex-wrap: wrap;
+      margin-top: 24px;
+    }
+    .rp-status {
+      font-family: var(--font-sans); font-size: 14px;
+      padding: 10px 14px; border-radius: var(--radius-sm); flex: 1; min-width: 0;
+    }
+    .rp-status.is-error { background: var(--danger-bg); color: var(--danger); }
+    .rp-status.is-success { background: var(--success-bg); color: var(--success); }
+    .rp-status.is-busy { background: var(--info-bg); color: var(--info); }
+
+    @media (max-width: 700px) {
+      .rp-grid-2, .rp-grid-3, .rp-grid-4 { grid-template-columns: 1fr; }
+      .rp-apply-inner { padding: 0 20px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="rp-page">
+    <header class="rp-header">
+      <div class="rp-strip">
+        <span>Emergency · call <b>911</b></span>
+        <span class="sep">·</span>
+        <span>RPRadioPatrol@gmail.com</span>
+      </div>
+      <div class="rp-nav">
+        <a href="index.html" class="rp-mark">
+          <img src="assets/logo-forest-transparent.png" alt="Radio Patrol — Rosedale Park" />
+        </a>
+        <nav>
+          <a href="index.html#about">About</a>
+          <a href="index.html#join">How to join</a>
+          <a href="index.html#faq">FAQ</a>
+          <a href="index.html#contact">Contact</a>
+        </nav>
+        <a href="index.html" class="rp-btn rp-btn-primary">← Back to home</a>
+      </div>
+    </header>
+
+    <main class="rp-apply">
+      <div class="rp-apply-inner">
+        <div class="eyebrow">Citizens Radio Patrol · Application</div>
+        <h1>Membership application</h1>
+        <p class="intro">
+          Complete this form to apply for membership in Rosedale Park Radio
+          Patrol #23. The Detroit Police Department reviews each application
+          to ensure no violent offenders are admitted. We'll reach out to you
+          directly once your application has been processed.
+        </p>
+
+        <form id="apply-form" novalidate>
+          <fieldset>
+            <legend>Applicant</legend>
+            <div class="rp-grid rp-grid-2">
+              <div class="rp-field">
+                <label for="name">Name (First Middle Last)</label>
+                <input id="name" name="name" type="text" autocomplete="name" required>
+              </div>
+              <div class="rp-field">
+                <label for="dateOfBirth">Date of Birth</label>
+                <input id="dateOfBirth" name="dateOfBirth" type="date" autocomplete="bday" required>
+              </div>
+            </div>
+            <div class="rp-grid rp-grid-2" style="margin-top:14px">
+              <div class="rp-field">
+                <label for="sex">Sex</label>
+                <input id="sex" name="sex" type="text" required>
+              </div>
+              <div class="rp-field">
+                <label for="race">Race</label>
+                <input id="race" name="race" type="text" required>
+              </div>
+            </div>
+          </fieldset>
+
+          <fieldset>
+            <legend>Address</legend>
+            <div class="rp-field">
+              <label for="address">Street Address</label>
+              <input id="address" name="address" type="text" autocomplete="street-address" required>
+            </div>
+            <div class="rp-grid rp-grid-3" style="margin-top:14px">
+              <div class="rp-field">
+                <label for="city">City</label>
+                <input id="city" name="city" type="text" autocomplete="address-level2" value="Detroit" required>
+              </div>
+              <div class="rp-field">
+                <label for="state">State</label>
+                <input id="state" name="state" type="text" autocomplete="address-level1" value="MI" required>
+              </div>
+              <div class="rp-field">
+                <label for="zip">Zip Code</label>
+                <input id="zip" name="zip" type="text" inputmode="numeric" autocomplete="postal-code" required>
+              </div>
+            </div>
+          </fieldset>
+
+          <fieldset>
+            <legend>Phone</legend>
+            <div class="rp-grid rp-grid-3">
+              <div class="rp-field">
+                <label for="homePhone">Home Phone</label>
+                <input id="homePhone" name="homePhone" type="tel" inputmode="tel" autocomplete="home tel" placeholder="(313) 555-0123" maxlength="14" data-format="phone">
+              </div>
+              <div class="rp-field">
+                <label for="cellPhone">Cell Phone</label>
+                <input id="cellPhone" name="cellPhone" type="tel" inputmode="tel" autocomplete="mobile tel" placeholder="(313) 555-0123" maxlength="14" data-format="phone">
+              </div>
+              <div class="rp-field">
+                <label for="workPhone">Work Phone <span style="font-weight:400;text-transform:none;color:var(--fg-muted)">(optional)</span></label>
+                <input id="workPhone" name="workPhone" type="tel" inputmode="tel" autocomplete="work tel" placeholder="(313) 555-0123" maxlength="14" data-format="phone">
+              </div>
+            </div>
+          </fieldset>
+
+          <fieldset>
+            <legend>License &amp; Service</legend>
+            <div class="rp-field">
+              <label for="driversLicense">Driver's License Number (Michigan format: A 123 456 789 012)</label>
+              <input id="driversLicense" name="driversLicense" type="text" inputmode="text"
+                     autocomplete="off" autocapitalize="characters" spellcheck="false"
+                     placeholder="A 123 456 789 012" maxlength="17"
+                     data-format="dl" required>
+            </div>
+            <div class="rp-field" style="margin-top:14px">
+              <label for="serviceAvailability">How often can you serve on patrol (days/hours)</label>
+              <input id="serviceAvailability" name="serviceAvailability" type="text" placeholder="e.g. Saturdays, 6–8 PM" required>
+            </div>
+          </fieldset>
+
+          <fieldset>
+            <legend>Emergency Contact</legend>
+            <div class="rp-field">
+              <label for="emergencyContactName">Contact Person</label>
+              <input id="emergencyContactName" name="emergencyContactName" type="text" required>
+            </div>
+            <div class="rp-grid rp-grid-2" style="margin-top:14px">
+              <div class="rp-field">
+                <label for="emergencyContactPhone1">Telephone (Primary)</label>
+                <input id="emergencyContactPhone1" name="emergencyContactPhone1" type="tel" inputmode="tel"
+                       placeholder="(313) 555-0123" maxlength="14" data-format="phone" required>
+              </div>
+              <div class="rp-field">
+                <label for="emergencyContactPhone2">Telephone (Alternate) <span style="font-weight:400;text-transform:none;color:var(--fg-muted)">(optional)</span></label>
+                <input id="emergencyContactPhone2" name="emergencyContactPhone2" type="tel" inputmode="tel"
+                       placeholder="(313) 555-0123" maxlength="14" data-format="phone">
+              </div>
+            </div>
+          </fieldset>
+
+          <fieldset>
+            <legend>Patrol</legend>
+            <div class="rp-grid rp-grid-2">
+              <div class="rp-field">
+                <label for="patrolName">Name of Radio Patrol</label>
+                <input id="patrolName" name="patrolName" type="text" readonly>
+              </div>
+              <div class="rp-field">
+                <label for="patrolPresident">President</label>
+                <input id="patrolPresident" name="patrolPresident" type="text" readonly>
+              </div>
+            </div>
+          </fieldset>
+
+          <fieldset>
+            <legend>Signature</legend>
+            <div class="rp-field">
+              <label for="signature-pad">Signature of Applicant</label>
+              <div class="rp-sig-wrap">
+                <canvas id="signature-pad"></canvas>
+                <div class="rp-sig-actions">
+                  <span>Sign with mouse, finger, or stylus.</span>
+                  <button type="button" class="rp-sig-clear" id="signature-clear">Clear</button>
+                </div>
+              </div>
+            </div>
+            <div class="rp-field" style="margin-top:14px; max-width: 240px">
+              <label for="date">Date</label>
+              <input id="date" name="date" type="date" required>
+            </div>
+          </fieldset>
+
+          <div class="rp-privacy">
+            <h3>Privacy Act Notice</h3>
+            <p style="margin:0">
+              The Detroit Police Department's application for the Citizens
+              Radio Patrol requests your Driver's License Number. The
+              request is made pursuant to the Department's practice of
+              requiring program participants to provide a criminal history
+              check using the applicant's Driver's License Number, along
+              with any identifying information from out-of-district criminal
+              history record checks on file with the applicant's Driver's
+              License Number. This information is necessary for the Detroit
+              Police Department to obtain accurate criminal history
+              information and will be used solely for that purpose. Signing
+              this document indicates that you have read and understood that
+              your Driver's License Number will be used by the Detroit
+              Police Department to obtain access to your criminal history
+              information.
+            </p>
+          </div>
+
+          <div class="rp-submit-row">
+            <button type="submit" class="rp-btn rp-btn-gold" id="submit-btn">
+              Submit application
+            </button>
+            <div class="rp-status" id="status" role="status" aria-live="polite"></div>
+          </div>
+        </form>
+      </div>
+    </main>
+
+    <footer id="contact" class="rp-footer">
+      <div class="rp-footer-top">
+        <div class="rp-footer-brand">
+          <img src="assets/logo-white.png" alt="Radio Patrol" />
+          <p>A volunteer civilian patrol serving the Rosedale Park neighborhood of Detroit, sanctioned by the Detroit Police Department under the Citizens Radio Patrol Program.</p>
+        </div>
+        <div class="rp-footer-cols">
+          <div>
+            <h5>Contact</h5>
+            <ul>
+              <li><b>Emergency</b> · 911</li>
+              <li><a href="mailto:RPRadioPatrol@gmail.com">RPRadioPatrol@gmail.com</a></li>
+            </ul>
+          </div>
+          <div>
+            <h5>Neighbors</h5>
+            <ul>
+              <li><a href="index.html">Back to home</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="rp-footer-bottom">
+        <span>© 2026 Rosedale Park Radio Patrol</span>
+        <span class="rp-callsign">RP-BASE · 10-4</span>
+      </div>
+    </footer>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/signature_pad@4.2.0/dist/signature_pad.umd.min.js"
+          crossorigin="anonymous"></script>
+  <script>
+    (function () {
+      var PATROL_NAME = 'Rosedale Park';
+      var PATROL_PRESIDENT = 'Trajan Centers';
+
+      var qs = new URLSearchParams(window.location.search);
+      var DEBUG = qs.get('debug') === '1';
+
+      var form = document.getElementById('apply-form');
+      var statusEl = document.getElementById('status');
+      var submitBtn = document.getElementById('submit-btn');
+      var canvas = document.getElementById('signature-pad');
+      var clearBtn = document.getElementById('signature-clear');
+
+      // Pre-fill read-only patrol info
+      document.getElementById('patrolName').value = PATROL_NAME;
+      document.getElementById('patrolPresident').value = PATROL_PRESIDENT;
+
+      // Default date to today
+      var today = new Date();
+      var iso = today.getFullYear() + '-' +
+        String(today.getMonth() + 1).padStart(2, '0') + '-' +
+        String(today.getDate()).padStart(2, '0');
+      document.getElementById('date').value = iso;
+
+      // Signature pad — resize canvas to its CSS size with HiDPI support
+      function resizeCanvas() {
+        var ratio = Math.max(window.devicePixelRatio || 1, 1);
+        canvas.width = canvas.offsetWidth * ratio;
+        canvas.height = canvas.offsetHeight * ratio;
+        canvas.getContext('2d').scale(ratio, ratio);
+        signaturePad.clear();
+      }
+      var signaturePad = new SignaturePad(canvas, {
+        backgroundColor: 'rgba(255,255,255,0)',
+        penColor: '#0C1F17',
+      });
+      window.addEventListener('resize', resizeCanvas);
+      resizeCanvas();
+
+      clearBtn.addEventListener('click', function () { signaturePad.clear(); });
+
+      function formatPhone(digits) {
+        digits = digits.slice(0, 10);
+        if (digits.length === 0) return '';
+        if (digits.length < 4) return '(' + digits;
+        if (digits.length < 7) return '(' + digits.slice(0, 3) + ') ' + digits.slice(3);
+        return '(' + digits.slice(0, 3) + ') ' + digits.slice(3, 6) + '-' + digits.slice(6);
+      }
+
+      function formatDL(raw) {
+        var alnum = raw.replace(/[^A-Za-z0-9]/g, '').toUpperCase();
+        if (!alnum) return '';
+        // First char must be a letter; if user typed a digit first, drop it.
+        var head = '';
+        var i = 0;
+        while (i < alnum.length && !/[A-Z]/.test(alnum[i])) i++;
+        if (i >= alnum.length) return '';
+        head = alnum[i];
+        var digits = alnum.slice(i + 1).replace(/[^0-9]/g, '').slice(0, 12);
+        var groups = [];
+        for (var k = 0; k < digits.length; k += 3) groups.push(digits.slice(k, k + 3));
+        return groups.length ? head + ' ' + groups.join(' ') : head;
+      }
+
+      Array.prototype.forEach.call(
+        document.querySelectorAll('input[data-format="phone"]'),
+        function (input) {
+          input.addEventListener('input', function () {
+            var digits = input.value.replace(/\D/g, '');
+            input.value = formatPhone(digits);
+          });
+        }
+      );
+
+      var dlInput = document.querySelector('input[data-format="dl"]');
+      if (dlInput) {
+        dlInput.addEventListener('input', function () {
+          dlInput.value = formatDL(dlInput.value);
+        });
+      }
+
+      function setStatus(msg, kind) {
+        statusEl.textContent = msg || '';
+        statusEl.classList.remove('is-error', 'is-success', 'is-busy');
+        if (kind) statusEl.classList.add('is-' + kind);
+      }
+
+      function formatDateUS(isoDate) {
+        if (!isoDate) return '';
+        var p = isoDate.split('-');
+        if (p.length !== 3) return isoDate;
+        return p[1] + '/' + p[2] + '/' + p[0];
+      }
+
+      form.addEventListener('submit', async function (e) {
+        e.preventDefault();
+        if (signaturePad.isEmpty()) {
+          setStatus('Please sign the form before submitting.', 'error');
+          return;
+        }
+        if (!form.checkValidity()) {
+          setStatus('Please complete all required fields.', 'error');
+          form.reportValidity();
+          return;
+        }
+
+        var homeP = document.getElementById('homePhone').value.trim();
+        var cellP = document.getElementById('cellPhone').value.trim();
+        if (!homeP && !cellP) {
+          setStatus('Please provide at least one of Home Phone or Cell Phone.', 'error');
+          document.getElementById('homePhone').focus();
+          return;
+        }
+
+        var fd = new FormData(form);
+        var payload = {};
+        fd.forEach(function (v, k) { payload[k] = String(v).trim(); });
+        payload.dateOfBirth = formatDateUS(payload.dateOfBirth);
+        payload.date = formatDateUS(payload.date);
+        payload.signature = signaturePad.toDataURL('image/png');
+
+        submitBtn.disabled = true;
+        setStatus('Submitting…', 'busy');
+
+        try {
+          var url = '/api/submit-application' + (DEBUG ? '?debug=1' : '');
+          var resp = await fetch(url, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload),
+          });
+
+          if (!resp.ok) {
+            var errText = 'Submission failed.';
+            try { var j = await resp.json(); if (j && j.error) errText = j.error; } catch (_) {}
+            setStatus(errText, 'error');
+            submitBtn.disabled = false;
+            return;
+          }
+
+          if (DEBUG) {
+            var blob = await resp.blob();
+            var dlUrl = URL.createObjectURL(blob);
+            var a = document.createElement('a');
+            a.href = dlUrl;
+            a.download = (payload.name.split(' ').pop() || 'Applicant') +
+                         '_RadioPatrol_Application.pdf';
+            document.body.appendChild(a); a.click(); a.remove();
+            URL.revokeObjectURL(dlUrl);
+            setStatus('Debug PDF downloaded. Verify field placement and adjust api/field-coords.js as needed.', 'success');
+            submitBtn.disabled = false;
+            return;
+          }
+
+          form.reset();
+          signaturePad.clear();
+          document.getElementById('patrolName').value = PATROL_NAME;
+          document.getElementById('patrolPresident').value = PATROL_PRESIDENT;
+          setStatus('Thank you. Your application has been submitted. We will be in touch once DPD has completed their review.', 'success');
+        } catch (err) {
+          console.error(err);
+          setStatus('Network error — please try again, or email RPRadioPatrol@gmail.com.', 'error');
+          submitBtn.disabled = false;
+        }
+      });
+    })();
+  </script>
+</body>
+</html>

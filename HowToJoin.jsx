@@ -203,7 +203,7 @@ function HowToJoin() {
             and we review every one.
           </p>
           <div style={ctaWrap}>
-            <a href="#apply" style={cardCtaBtn}>
+            <a href="apply.html" style={cardCtaBtn}>
               Start application →
             </a>
           </div>
