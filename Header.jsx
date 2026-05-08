@@ -14,6 +14,7 @@ function Header() {
           <a href="#about">About</a>
           <a href="#join">How to join</a>
           <a href="#faq">FAQ</a>
+          <a href="#patrol-map">Coverage Map</a>
           <a href="#contact">Contact</a>
         </nav>
         <a href="#join" className="rp-btn rp-btn-primary">Join our team →</a>
