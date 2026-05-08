@@ -51,28 +51,6 @@
     .rp-field input[readonly] { background: var(--stone-100); color: var(--fg-muted); }
     .rp-field textarea { resize: vertical; min-height: 64px; }
 
-    .rp-sig-wrap {
-      border: 1px dashed var(--forest-700); border-radius: var(--radius-sm);
-      background: var(--white); position: relative;
-    }
-    .rp-sig-wrap canvas {
-      display: block; width: 100%; height: 160px; touch-action: none;
-      background: var(--white); border-radius: var(--radius-sm);
-    }
-    .rp-sig-actions {
-      display: flex; justify-content: space-between; align-items: center;
-      padding: 8px 12px; border-top: 1px solid var(--border);
-      font-family: var(--font-sans); font-size: 12px; color: var(--fg-muted);
-    }
-    .rp-sig-clear {
-      font-family: var(--font-sans); font-size: 12px; font-weight: 700;
-      letter-spacing: 0.06em; text-transform: uppercase;
-      background: transparent; border: 1px solid var(--forest-800);
-      color: var(--forest-800); padding: 6px 14px; border-radius: var(--radius-sm);
-      cursor: pointer; transition: background var(--dur) var(--ease);
-    }
-    .rp-sig-clear:hover { background: var(--forest-100); }
-
     .rp-privacy {
       border: 2px solid var(--forest-800); background: var(--stone-100);
       padding: 18px 22px; margin: 28px 0; border-radius: var(--radius);
@@ -82,6 +60,52 @@
     .rp-privacy h3 {
       font-family: var(--font-display); font-size: 16px;
       letter-spacing: 0.04em; color: var(--forest-900); margin: 0 0 10px;
+    }
+
+    .rp-field-note {
+      display: block; margin-top: 6px;
+      font-family: var(--font-sans); font-size: 13px;
+      color: var(--fg-muted); line-height: 1.45;
+    }
+
+    .rp-intro-links {
+      display: flex; flex-direction: column; gap: 6px;
+      margin: -16px 0 28px;
+      font-family: var(--font-sans); font-size: 14px;
+    }
+    .rp-intro-links a {
+      color: var(--forest-700); text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+    .rp-intro-links a:hover { color: var(--forest-900); }
+    .rp-secure-link { font-weight: 600; }
+    .rp-print-link { color: var(--fg-muted); }
+
+    .rp-secure-note {
+      text-align: center; font-family: var(--font-sans);
+      font-size: 13px; color: var(--fg-muted);
+      margin: 14px auto 0; max-width: 60ch; line-height: 1.5;
+    }
+
+    .rp-privacy-faq {
+      max-width: 880px; margin: 56px auto 0; padding: 32px;
+      background: var(--white); border: 1px solid var(--border);
+      border-radius: var(--radius);
+      font-family: var(--font-serif); color: var(--fg);
+    }
+    .rp-privacy-faq h2 {
+      font-family: var(--font-display); text-transform: uppercase;
+      color: var(--forest-900); font-size: clamp(24px, 3vw, 32px);
+      margin: 0 0 20px; letter-spacing: 0.02em;
+    }
+    .rp-privacy-faq h3 {
+      font-family: var(--font-display); color: var(--forest-800);
+      font-size: 17px; letter-spacing: 0.03em;
+      margin: 22px 0 8px;
+    }
+    .rp-privacy-faq h3:first-of-type { margin-top: 0; }
+    .rp-privacy-faq p {
+      font-size: 15px; line-height: 1.6; margin: 0 0 12px;
     }
 
     .rp-submit-row {
@@ -135,6 +159,14 @@
           directly once your application has been processed.
         </p>
 
+        <div class="rp-intro-links">
+          <a class="rp-secure-link" href="#privacy-faq">🔒 Is my info secure?</a>
+          <span class="rp-print-link">
+            Prefer to fill out a paper form? →
+            <a href="/assets/Citizens Radio Patrol Application (Fillable).pdf" target="_blank" rel="noopener">Download the fillable PDF</a>
+          </span>
+        </div>
+
         <form id="apply-form" novalidate>
           <fieldset>
             <legend>Applicant</legend>
@@ -156,6 +188,7 @@
               <div class="rp-field">
                 <label for="race">Race</label>
                 <input id="race" name="race" type="text" required>
+                <small class="rp-field-note">Required by the Detroit Police Department for all Citizens Radio Patrol applicants.</small>
               </div>
             </div>
           </fieldset>
@@ -208,6 +241,7 @@
                      autocomplete="off" autocapitalize="characters" spellcheck="false"
                      placeholder="A 123 456 789 012" maxlength="17"
                      data-format="dl" required>
+              <small class="rp-field-note">Required by the Detroit Police Department for a standard criminal history background check. See the Privacy Act Notice below.</small>
             </div>
             <div class="rp-field" style="margin-top:14px">
               <label for="serviceAvailability">How often can you serve on patrol (days/hours)</label>
@@ -251,19 +285,15 @@
 
           <fieldset>
             <legend>Signature</legend>
-            <div class="rp-field">
-              <label for="signature-pad">Signature of Applicant</label>
-              <div class="rp-sig-wrap">
-                <canvas id="signature-pad"></canvas>
-                <div class="rp-sig-actions">
-                  <span>Sign with mouse, finger, or stylus.</span>
-                  <button type="button" class="rp-sig-clear" id="signature-clear">Clear</button>
-                </div>
+            <div class="rp-grid rp-grid-2">
+              <div class="rp-field">
+                <label for="typedSignature">Full Name (typed signature)</label>
+                <input id="typedSignature" name="typedSignature" type="text" autocomplete="name" required>
               </div>
-            </div>
-            <div class="rp-field" style="margin-top:14px; max-width: 240px">
-              <label for="date">Date</label>
-              <input id="date" name="date" type="date" required>
+              <div class="rp-field">
+                <label for="date">Date</label>
+                <input id="date" name="date" type="date" required>
+              </div>
             </div>
           </fieldset>
 
@@ -293,7 +323,37 @@
             </button>
             <div class="rp-status" id="status" role="status" aria-live="polite"></div>
           </div>
+          <p class="rp-secure-note">
+            🔒 Secure form — your data is sent directly to the patrol president and forwarded to DPD — it is not stored or sold.
+          </p>
         </form>
+
+        <section id="privacy-faq" class="rp-privacy-faq" aria-labelledby="privacy-faq-title">
+          <h2 id="privacy-faq-title">Is My Information Secure?</h2>
+
+          <h3>Is my information secure?</h3>
+          <p>
+            Yes. This form uses HTTPS encryption. Your submission is sent directly to the
+            Rosedale Park Radio Patrol president and forwarded to the Detroit Police
+            Department. It is not stored on a public server and will not be shared
+            beyond your application.
+          </p>
+
+          <h3>Why do you ask for my Race?</h3>
+          <p>
+            Race is a field on the official Detroit Police Department application for
+            the Citizens Radio Patrol. It is required by DPD — not by our patrol — and
+            is collected solely as part of the DPD intake process.
+          </p>
+
+          <h3>Why do you ask for my Driver's License Number?</h3>
+          <p>
+            Your Driver's License Number is required by the Detroit Police Department to
+            conduct a standard criminal history background check, which is required of
+            all Citizens Radio Patrol applicants citywide. This is disclosed in the
+            Privacy Act Notice on the official DPD form and is reproduced on this page.
+          </p>
+        </section>
       </div>
     </main>
 
@@ -326,8 +386,6 @@
     </footer>
   </div>
 
-  <script src="https://cdn.jsdelivr.net/npm/signature_pad@4.2.0/dist/signature_pad.umd.min.js"
-          crossorigin="anonymous"></script>
   <script>
     (function () {
       var PATROL_NAME = 'Rosedale Park';
@@ -339,8 +397,6 @@
       var form = document.getElementById('apply-form');
       var statusEl = document.getElementById('status');
       var submitBtn = document.getElementById('submit-btn');
-      var canvas = document.getElementById('signature-pad');
-      var clearBtn = document.getElementById('signature-clear');
 
       // Pre-fill read-only patrol info
       document.getElementById('patrolName').value = PATROL_NAME;
@@ -352,23 +408,6 @@
         String(today.getMonth() + 1).padStart(2, '0') + '-' +
         String(today.getDate()).padStart(2, '0');
       document.getElementById('date').value = iso;
-
-      // Signature pad — resize canvas to its CSS size with HiDPI support
-      function resizeCanvas() {
-        var ratio = Math.max(window.devicePixelRatio || 1, 1);
-        canvas.width = canvas.offsetWidth * ratio;
-        canvas.height = canvas.offsetHeight * ratio;
-        canvas.getContext('2d').scale(ratio, ratio);
-        signaturePad.clear();
-      }
-      var signaturePad = new SignaturePad(canvas, {
-        backgroundColor: 'rgba(255,255,255,0)',
-        penColor: '#0C1F17',
-      });
-      window.addEventListener('resize', resizeCanvas);
-      resizeCanvas();
-
-      clearBtn.addEventListener('click', function () { signaturePad.clear(); });
 
       function formatPhone(digits) {
         digits = digits.slice(0, 10);
@@ -425,10 +464,6 @@
 
       form.addEventListener('submit', async function (e) {
         e.preventDefault();
-        if (signaturePad.isEmpty()) {
-          setStatus('Please sign the form before submitting.', 'error');
-          return;
-        }
         if (!form.checkValidity()) {
           setStatus('Please complete all required fields.', 'error');
           form.reportValidity();
@@ -448,7 +483,6 @@
         fd.forEach(function (v, k) { payload[k] = String(v).trim(); });
         payload.dateOfBirth = formatDateUS(payload.dateOfBirth);
         payload.date = formatDateUS(payload.date);
-        payload.signature = signaturePad.toDataURL('image/png');
 
         submitBtn.disabled = true;
         setStatus('Submitting…', 'busy');
@@ -484,7 +518,6 @@
           }
 
           form.reset();
-          signaturePad.clear();
           document.getElementById('patrolName').value = PATROL_NAME;
           document.getElementById('patrolPresident').value = PATROL_PRESIDENT;
           setStatus('Thank you. Your application has been submitted. We will be in touch once DPD has completed their review.', 'success');
