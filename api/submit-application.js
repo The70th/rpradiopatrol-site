@@ -19,6 +19,7 @@ const REQUIRED_FIELDS = [
   'emergencyContactName',
   'emergencyContactPhone1',
   'serviceAvailability',
+  'typedSignature',
   'date',
 ];
 
@@ -89,7 +90,7 @@ async function buildFilledPdf(data) {
   set('PatrolAvailability', data.serviceAvailability);
   set('RadioPatrolName', PATROL_NAME);
   set('RadioPatrolPresident', PATROL_PRESIDENT);
-  set('SignatureOfApplicant', data.name);
+  set('SignatureOfApplicant', data.typedSignature || data.name);
   set('Date', data.date);
 
   form.flatten();
