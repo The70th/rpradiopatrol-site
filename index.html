@@ -11,8 +11,10 @@
   <link rel="icon" type="image/png" href="assets/logo-forest-transparent.png">
   <link rel="stylesheet" href="colors_and_type.css">
   <link rel="stylesheet" href="styles.css">
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="anonymous" />
-  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin="anonymous"></script>
+  <style>
+    .rp-patrol-iframe { width: 100%; height: 450px; border: 0; border-radius: 8px; display: block; }
+    @media (max-width: 768px) { .rp-patrol-iframe { height: 300px; } }
+  </style>
   <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
   <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
   <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
@@ -25,9 +27,91 @@
   <script type="text/babel" src="HowToJoin.jsx"></script>
   <script type="text/babel" src="FAQ.jsx"></script>
   <script type="text/babel" src="PerksAndTraining.jsx"></script>
-  <script type="text/babel" src="PatrolMap.jsx"></script>
   <script type="text/babel" src="Footer.jsx"></script>
   <script type="text/babel">
+    function PatrolMap() {
+      const sectionStyle = {
+        padding: '96px 0 104px',
+        background: 'var(--stone-50)',
+        color: 'var(--fg)',
+        borderTop: '4px solid var(--gold-600)',
+        borderBottom: '4px solid var(--gold-600)',
+      };
+      const innerStyle = { maxWidth: 1100, margin: '0 auto', padding: '0 32px' };
+      const headStyle = { textAlign: 'center', marginBottom: 32 };
+      const eyebrowStyle = {
+        fontFamily: 'var(--font-sans)', fontSize: 12, fontWeight: 700,
+        textTransform: 'uppercase', letterSpacing: '0.18em',
+        color: 'var(--gold-700)', marginBottom: 14,
+      };
+      const h2Style = {
+        fontFamily: 'var(--font-display)',
+        fontSize: 'clamp(36px, 4.4vw, 52px)',
+        textTransform: 'uppercase', color: 'var(--forest-900)',
+        margin: 0, lineHeight: 0.98, fontWeight: 600, letterSpacing: '0.01em',
+      };
+      const subStyle = {
+        fontFamily: 'var(--font-serif)', color: 'var(--fg)',
+        fontSize: 17, lineHeight: 1.55, margin: '14px auto 0', maxWidth: '60ch',
+      };
+      const listWrapStyle = {
+        marginTop: 28, background: 'var(--white)',
+        border: '1px solid var(--border)', borderRadius: 'var(--radius)',
+        padding: '20px 28px',
+      };
+      const listTitleStyle = {
+        fontFamily: 'var(--font-sans)', fontSize: 12, fontWeight: 700,
+        letterSpacing: '0.18em', textTransform: 'uppercase',
+        color: 'var(--gold-700)', margin: '0 0 14px',
+      };
+      const listStyle = {
+        margin: 0, padding: 0, listStyle: 'none', display: 'grid',
+        gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))',
+        gap: '10px 24px', fontFamily: 'var(--font-serif)',
+        fontSize: 15, color: 'var(--fg)',
+      };
+      const dirLabelStyle = {
+        fontFamily: 'var(--font-sans)', fontSize: 11, fontWeight: 700,
+        letterSpacing: '0.16em', textTransform: 'uppercase',
+        color: 'var(--forest-800)', marginRight: 6,
+      };
+
+      return (
+        <section id="patrol-map" style={sectionStyle}>
+          <div style={innerStyle}>
+            <div style={headStyle}>
+              <div style={eyebrowStyle}>Patrol Coverage</div>
+              <h2 style={h2Style}>Our Patrol Coverage Area</h2>
+              <p style={subStyle}>
+                Rosedale Park Radio Patrol #23 serves the Rosedale Park neighborhood,
+                bounded by the streets below.
+              </p>
+            </div>
+
+            <iframe
+              className="rp-patrol-iframe"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7282.768266913677!2d-83.22653664876191!3d42.398881111829766!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8824ca5ce743ed19%3A0x69f04dd0b9d78d1!2sRosedale%20Park%20Historic%20District%2C%20Detroit%2C%20MI%2048223!5e0!3m2!1sen!2sus!4v1778269864480!5m2!1sen!2sus"
+              allowFullScreen=""
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+              title="Rosedale Park Radio Patrol coverage area">
+            </iframe>
+
+            <div style={listWrapStyle}>
+              <p style={listTitleStyle}>Boundary streets</p>
+              <ul style={listStyle}>
+                <li><span style={dirLabelStyle}>North</span> Grand River Ave</li>
+                <li><span style={dirLabelStyle}>East</span> Southfield Freeway (M-39)</li>
+                <li><span style={dirLabelStyle}>South</span> Lyndon Ave (with extension south to Acacia between Faust and Southfield)</li>
+                <li><span style={dirLabelStyle}>West</span> Evergreen Rd</li>
+                <li><span style={dirLabelStyle}>Interior boundary</span> Outer Dr / Fenkell Ave</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+      );
+    }
+
     function App() {
       return (
         <div className="rp-page">
