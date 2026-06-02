@@ -63,9 +63,9 @@ window.RP = {
     eyebrow: "How the patrol works",
     heading: "As easy as 1–2–3.",
     sub:
-      "The whole job is three things, done together. A pair of patrollers drives " +
-      "the neighborhood, a base operator stays in constant contact, and what we " +
-      "see gets reported.",
+      "A pair of patrollers drives around the neighborhood and stays in contact " +
+      "with another neighbor at home called a base operator. The patrollers " +
+      "report anything out of the ordinary to the base, or to DPD.",
     steps: [
       {
         n: "01",
@@ -75,12 +75,12 @@ window.RP = {
       {
         n: "02",
         t: "Stay on the radio",
-        d: "Patrollers stay in radio contact with a base operator throughout the patrol. You are never out there alone.",
+        d: "Patrollers stay in contact with a base operator throughout the entire patrol. You are never out there alone.",
       },
       {
         n: "03",
         t: "Report what you see",
-        d: "Anything out of place is called in to base — or directly to 911 in a real emergency. We observe and report. We never confront.",
+        d: "Anything out of place is called in to base, or directly to 911 in a real emergency. We observe and report. We never confront.",
       },
     ],
   },
@@ -91,37 +91,36 @@ window.RP = {
     heading: "Three steps to get on the radio.",
     sub:
       "Radio Patrol is a volunteer organization sanctioned by the Detroit Police " +
-      "Department. Joining is straightforward, but the process is real — and it " +
-      "keeps the neighborhood safe.",
+      "Department. Joining our patrol is easy!",
     step1: {
       label: "Start here",
       title: "Submit your application",
       body:
-        "Complete the online application — name and contact information. " +
-        "It is a formal application to a DPD-sanctioned volunteer organization, " +
-        "and we review every one.",
+        "Complete the online application. " +
+        "Applications are sent to the Rosedale Park Radio Patrol " +
+        "and are transmitted via encryption and processed locally.",
       button: "Start application →",
     },
     step2: {
       label: "Review",
       title: "Detroit Police review",
       body:
-        "Your application is reviewed by the Detroit Police to ensure no " +
-        "violent offenders are able to join. We\u2019ll reach out when " +
-        "you\u2019ve been approved.",
+        "The completed application is reviewed by the Detroit Police to ensure no " +
+        "violent offenders are allowed to join. We will reach out when " +
+        "your application has been approved.",
       chip: "Typically less than 1 week",
     },
     step3: {
       label: "Ride along",
       title: "Two practice patrols",
       body:
-        "Once approved, you\u2019ll go out on two practice patrols with an " +
-        "experienced team. You\u2019ll learn radio protocol, the route, and " +
-        "what to watch for. After that, you\u2019re ready to patrol on your " +
-        "own schedule.",
+        "Once approved, you will go out on two practice patrols with an " +
+        "experienced team. You will learn how to communicate with the base, " +
+        "the route, and what to watch for. After that, you will be " +
+        "ready to patrol on your own schedule.",
       chip: "Two ride-alongs",
     },
-    footnote: "Two hours a month is all we ask — you choose when.",
+    footnote: "Two hours a month is all we ask, and you choose your own schedule!",
   },
 
   /* ---- PERKS & TRAINING ------------------------------------------------ */
@@ -129,17 +128,16 @@ window.RP = {
     eyebrow: "Work hard, play hard",
     heading: "More than just patrols.",
     sub:
-      "Patrollers work hard — and we make sure the work is rewarded. Our patrol " +
-      "hours are paid by the City of Detroit, and once a year we put every dollar " +
-      "we earn back into the group with a proper celebration.",
+      "Radio Patrol is a real committment, and we make sure the work is rewarded. " +
+      "Our patrol hours are paid by the City of Detroit, and once a year we put that " +
+      "money back into the group with a proper celebration.",
     party: {
       eyebrow: "Annual summer party",
-      title: "One night. On the Patrol's dime.",
+      title: "A night of fun, on the Patrol's dime.",
       body:
-        "Every summer we throw a party for the whole Patrol — a catered dinner " +
-        "at a great restaurant, or a night out at a fun center. It's on us, it " +
-        "adds up to a real thank-you, and it's a chance to celebrate a year of " +
-        "looking out for our community.",
+        "Every summer we throw a party for the whole Patrol: a catered dinner " +
+        "at a great restaurant, or a night out at a fun center. It's on us to say " +
+        "thank-you, and to celebrate a year of looking out for our neighborhood",
       meta: "Once a year · All volunteers welcome",
     },
     training: {
@@ -147,9 +145,9 @@ window.RP = {
       pill: "~4 / year · Free",
       title: "Ongoing, free training.",
       body:
-        "The City-Wide Radio Patrol holds short, genuinely useful training " +
-        "sessions roughly four times a year. Open to every volunteer, and the " +
-        "skills carry long after your shift ends.",
+        "The City-Wide Radio Patrol holds short, useful training " +
+        "sessions roughly four times a year. Sessions are open to every " +
+        "patroller, and the skills carry long after your shift ends.",
       recentLabel: "Recent sessions",
       mostRecentBadge: "Most recent",
       sessions: [
