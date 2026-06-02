@@ -1,4 +1,5 @@
 function Hero() {
+  const C = RP.hero;
   return (
     <section
       className="rp-hero rp-hero-photo"
@@ -28,24 +29,19 @@ function Hero() {
         }}
       />
       <div className="rp-hero-inner" style={{ position: 'relative', zIndex: 2 }}>
-        <div className="rp-eyebrow">Volunteer civilian patrol · Rosedale Park, Detroit</div>
-        <h1>Neighbors looking<br/>out for neighbors.</h1>
-        <p className="rp-lede">
-          The Rosedale Park Radio Patrol is a volunteer organization made up of
-          interested neighbors who look out for the safety and well-being of all
-          people in Rosedale Park. We are a community owned, community operated,
-          community watch.
-        </p>
+        <div className="rp-eyebrow">{C.eyebrow}</div>
+        <h1>{C.headlineTop}<br/>{C.headlineBottom}</h1>
+        <p className="rp-lede">{C.lede}</p>
         <div className="rp-hero-cta">
-          <a href="#join" className="rp-btn rp-btn-gold">Join our team →</a>
-          <a href="#about" className="rp-btn rp-btn-ghost-light">How the patrol works</a>
+          <a href="#join" className="rp-btn rp-btn-gold">{C.joinButton}</a>
+          <a href="#about" className="rp-btn rp-btn-ghost-light">{C.aboutButton}</a>
         </div>
         <div className="rp-hero-meta">
-          <span><b>1,600</b> homes in the neighborhood</span>
+          <span><b>{C.homesCount}</b> {C.homesLabel}</span>
           <span className="sep">·</span>
-          <span>Community owned &amp; operated</span>
+          <span>{C.ownedLabel}</span>
           <span className="sep">·</span>
-          <span>Sanctioned by <b>DPD</b></span>
+          <span>{C.sanctionedText} <b>{C.sanctionedBy}</b></span>
         </div>
       </div>
     </section>

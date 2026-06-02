@@ -21,6 +21,8 @@
 </head>
 <body>
   <div id="root"></div>
+  <!-- All editable website text lives in content.js (loaded first, before the components). -->
+  <script src="content.js"></script>
   <script type="text/babel" src="Header.jsx"></script>
   <script type="text/babel" src="Hero.jsx"></script>
   <script type="text/babel" src="InfoBar.jsx"></script>
@@ -80,12 +82,9 @@
         <section id="patrol-map" style={sectionStyle}>
           <div style={innerStyle}>
             <div style={headStyle}>
-              <div style={eyebrowStyle}>Patrol Coverage</div>
-              <h2 style={h2Style}>Our Patrol Coverage Area</h2>
-              <p style={subStyle}>
-                Rosedale Park Radio Patrol #23 serves the Rosedale Park neighborhood,
-                bounded by the streets below.
-              </p>
+              <div style={eyebrowStyle}>{RP.patrolMap.eyebrow}</div>
+              <h2 style={h2Style}>{RP.patrolMap.heading}</h2>
+              <p style={subStyle}>{RP.patrolMap.sub}</p>
             </div>
 
             <iframe
@@ -98,13 +97,11 @@
             </iframe>
 
             <div style={listWrapStyle}>
-              <p style={listTitleStyle}>Boundary streets</p>
+              <p style={listTitleStyle}>{RP.patrolMap.boundaryLabel}</p>
               <ul style={listStyle}>
-                <li><span style={dirLabelStyle}>North</span> Grand River Ave</li>
-                <li><span style={dirLabelStyle}>East</span> Southfield Freeway (M-39)</li>
-                <li><span style={dirLabelStyle}>South</span> Lyndon Ave (with extension south to Acacia between Faust and Southfield)</li>
-                <li><span style={dirLabelStyle}>West</span> Evergreen Rd</li>
-                <li><span style={dirLabelStyle}>Interior boundary</span> Outer Dr / Fenkell Ave</li>
+                {RP.patrolMap.boundaries.map((b, i) => (
+                  <li key={i}><span style={dirLabelStyle}>{b.dir}</span> {b.street}</li>
+                ))}
               </ul>
             </div>
           </div>

@@ -1,23 +1,24 @@
 function Header() {
+  const C = RP.header;
   return (
     <header className="rp-header">
       <div className="rp-strip">
-        <span>Emergency · call <b>911</b></span>
+        <span>{C.emergencyText} <b>{C.emergencyNumber}</b></span>
         <span className="sep">·</span>
-        <span>RPRadioPatrol@gmail.com</span>
+        <span>{C.email}</span>
       </div>
       <div className="rp-nav">
         <a href="#" className="rp-mark">
-          <img src="assets/logo-forest-transparent.png" alt="Radio Patrol — Rosedale Park" />
+          <img src="assets/logo-forest-transparent.png" alt={C.logoAlt} />
         </a>
         <nav>
-          <a href="#about">About</a>
-          <a href="#join">How to join</a>
-          <a href="#faq">FAQ</a>
-          <a href="#patrol-map">Coverage Map</a>
-          <a href="#contact">Contact</a>
+          <a href="#about">{C.nav.about}</a>
+          <a href="#join">{C.nav.join}</a>
+          <a href="#faq">{C.nav.faq}</a>
+          <a href="#patrol-map">{C.nav.map}</a>
+          <a href="#contact">{C.nav.contact}</a>
         </nav>
-        <a href="#join" className="rp-btn rp-btn-primary">Join our team →</a>
+        <a href="#join" className="rp-btn rp-btn-primary">{C.joinButton}</a>
       </div>
     </header>
   );

@@ -1,4 +1,5 @@
 function PerksAndTraining() {
+  const C = RP.perks;
   const section = {
     padding: '96px 0',
     background: 'var(--stone-50)',
@@ -133,16 +134,14 @@ function PerksAndTraining() {
     lineHeight: 1.4,
   };
 
+  const sessions = C.training.sessions;
+
   return (
     <section id="perks" style={section}>
       <div style={head}>
-        <div style={eyebrow}>Work hard, play hard</div>
-        <h2 style={h2}>More than just patrols.</h2>
-        <p style={sub}>
-          Patrollers work hard — and we make sure the work is rewarded. Our patrol
-          hours are paid by the City of Detroit, and once a year we put every dollar
-          we earn back into the group with a proper celebration.
-        </p>
+        <div style={eyebrow}>{C.eyebrow}</div>
+        <h2 style={h2}>{C.heading}</h2>
+        <p style={sub}>{C.sub}</p>
       </div>
 
       <div style={grid}>
@@ -151,17 +150,12 @@ function PerksAndTraining() {
           <img src="assets/photos/patrollers-dinner.jpg" alt="" style={photoImg} />
           <div style={photoScrim} />
           <div style={photoBody}>
-            <div style={photoEb}>Annual summer party</div>
-            <h3 style={photoH}>One night. On the Patrol's dime.</h3>
-            <p style={photoP}>
-              Every summer we throw a party for the whole Patrol — a catered dinner
-              at a great restaurant, or a night out at a fun center. It's on us, it
-              adds up to a real thank-you, and it's a chance to celebrate a year of
-              looking out for our community.
-            </p>
+            <div style={photoEb}>{C.party.eyebrow}</div>
+            <h3 style={photoH}>{C.party.title}</h3>
+            <p style={photoP}>{C.party.body}</p>
             <div style={photoMeta}>
               <span style={pin} />
-              <span>Once a year · All volunteers welcome</span>
+              <span>{C.party.meta}</span>
             </div>
           </div>
         </div>
@@ -169,40 +163,24 @@ function PerksAndTraining() {
         {/* RIGHT — Training card */}
         <div style={trainCard}>
           <div style={trainTopRow}>
-            <div style={trainEb}>City-Wide Radio Patrol trainings</div>
-            <span style={ratePill}>~4 / year · Free</span>
+            <div style={trainEb}>{C.training.label}</div>
+            <span style={ratePill}>{C.training.pill}</span>
           </div>
-          <h3 style={trainH}>Ongoing, free training.</h3>
-          <p style={trainP}>
-            The City-Wide Radio Patrol holds short, genuinely useful training
-            sessions roughly four times a year. Open to every volunteer, and the
-            skills carry long after your shift ends.
-          </p>
+          <h3 style={trainH}>{C.training.title}</h3>
+          <p style={trainP}>{C.training.body}</p>
 
-          <div style={recentEb}>Recent sessions</div>
+          <div style={recentEb}>{C.training.recentLabel}</div>
           <ul style={recentList}>
-            <li style={recentItem}>
-              <span style={recentDot} />
-              <span style={recentText}>
-                Narcan &amp; opioid response
-                <span style={recentBadge}>Most recent</span>
-                <span style={recentSub}>How to recognize an overdose and administer Narcan.</span>
-              </span>
-            </li>
-            <li style={recentItem}>
-              <span style={recentDotMuted} />
-              <span style={recentText}>
-                Human trafficking awareness
-                <span style={recentSub}>What to look for, how to report safely.</span>
-              </span>
-            </li>
-            <li style={recentItem}>
-              <span style={recentDotMuted} />
-              <span style={recentText}>
-                Graffiti &amp; vandalism response
-                <span style={recentSub}>Documenting incidents and working with the city.</span>
-              </span>
-            </li>
+            {sessions.map((s, i) => (
+              <li key={i} style={recentItem}>
+                <span style={i === 0 ? recentDot : recentDotMuted} />
+                <span style={recentText}>
+                  {s.title}
+                  {i === 0 && <span style={recentBadge}>{C.training.mostRecentBadge}</span>}
+                  <span style={recentSub}>{s.sub}</span>
+                </span>
+              </li>
+            ))}
           </ul>
         </div>
       </div>

@@ -1,4 +1,5 @@
 function HowToJoin() {
+  const C = RP.howToJoin;
   const sectionStyle = {
     padding: '96px 0 104px',
     background: 'var(--forest-800)',
@@ -180,13 +181,9 @@ function HowToJoin() {
   return (
     <section id="join" className="rp-join" style={sectionStyle}>
       <div style={headStyle}>
-        <div style={eyebrowStyle}>How to join</div>
-        <h2 style={h2Style}>Three steps to get on the radio.</h2>
-        <p style={subStyle}>
-          Radio Patrol is a volunteer organization sanctioned by the Detroit Police
-          Department. Joining is straightforward, but the process is real — and it
-          keeps the neighborhood safe.
-        </p>
+        <div style={eyebrowStyle}>{C.eyebrow}</div>
+        <h2 style={h2Style}>{C.heading}</h2>
+        <p style={subStyle}>{C.sub}</p>
       </div>
 
       <div style={gridStyle}>
@@ -194,17 +191,13 @@ function HowToJoin() {
         <div style={cardFeatured}>
           <div style={numRowFeatured}>
             <span style={numBadgeOnGold}>01</span>
-            <span style={stepLabelOnGold}>Start here</span>
+            <span style={stepLabelOnGold}>{C.step1.label}</span>
           </div>
-          <h3 style={h3OnGold}>Submit your application</h3>
-          <p style={pOnGold}>
-            Complete the online application — name and contact information.
-            It is a formal application to a DPD-sanctioned volunteer organization,
-            and we review every one.
-          </p>
+          <h3 style={h3OnGold}>{C.step1.title}</h3>
+          <p style={pOnGold}>{C.step1.body}</p>
           <div style={ctaWrap}>
             <a href="apply.html" style={cardCtaBtn}>
-              Start application →
+              {C.step1.button}
             </a>
           </div>
         </div>
@@ -213,16 +206,12 @@ function HowToJoin() {
         <div style={cardBase}>
           <div style={numRow}>
             <span style={numBadge}>02</span>
-            <span style={stepLabel}>Review</span>
+            <span style={stepLabel}>{C.step2.label}</span>
           </div>
-          <h3 style={h3Style}>Detroit Police review</h3>
-          <p style={pStyle}>
-            Your application is reviewed by the Detroit Police to ensure no
-            violent offenders are able to join. We’ll reach out when
-            you’ve been approved.
-          </p>
+          <h3 style={h3Style}>{C.step2.title}</h3>
+          <p style={pStyle}>{C.step2.body}</p>
           <div style={ctaWrap}>
-            <span style={timeChip}>Typically less than 1 week</span>
+            <span style={timeChip}>{C.step2.chip}</span>
           </div>
         </div>
 
@@ -230,24 +219,17 @@ function HowToJoin() {
         <div style={cardBase}>
           <div style={numRow}>
             <span style={numBadge}>03</span>
-            <span style={stepLabel}>Ride along</span>
+            <span style={stepLabel}>{C.step3.label}</span>
           </div>
-          <h3 style={h3Style}>Two practice patrols</h3>
-          <p style={pStyle}>
-            Once approved, you’ll go out on two practice patrols with an
-            experienced team. You’ll learn radio protocol, the route, and
-            what to watch for. After that, you’re ready to patrol on your
-            own schedule.
-          </p>
+          <h3 style={h3Style}>{C.step3.title}</h3>
+          <p style={pStyle}>{C.step3.body}</p>
           <div style={ctaWrap}>
-            <span style={timeChip}>Two ride-alongs</span>
+            <span style={timeChip}>{C.step3.chip}</span>
           </div>
         </div>
       </div>
 
-      <p style={footnote}>
-        Two hours a month is all we ask — you choose when.
-      </p>
+      <p style={footnote}>{C.footnote}</p>
     </section>
   );
 }
