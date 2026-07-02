@@ -151,8 +151,8 @@ module.exports = async function handler(req, res) {
   try {
     const resend = new Resend(apiKey);
     const { error: sendError } = await resend.emails.send({
-      from: 'Radio Patrol <onboarding@resend.dev>',
-      to: 'resend@trajan.mozmail.com',
+      from: 'Radio Patrol <applications@rpradiopatrol.org>',
+      to: 'RPRadioPatrol@gmail.com',
       subject: `New Radio Patrol Application — ${data.name}`,
       text:
         'A new membership application has been submitted. ' +
