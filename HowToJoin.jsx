@@ -41,12 +41,12 @@ function HowToJoin() {
     maxWidth: '54ch',
   };
 
+  /* Column count and gutters live in styles.css (.rp-join-grid) so the
+     mobile media query can collapse the layout to a single column. */
   const gridStyle = {
     maxWidth: 1200,
     margin: '0 auto',
-    padding: '0 64px',
     display: 'grid',
-    gridTemplateColumns: 'repeat(3, 1fr)',
     gap: 24,
     alignItems: 'stretch',
   };
@@ -186,7 +186,7 @@ function HowToJoin() {
         <p style={subStyle}>{C.sub}</p>
       </div>
 
-      <div style={gridStyle}>
+      <div className="rp-join-grid" style={gridStyle}>
         {/* STEP 1 — FEATURED CARD with CTA */}
         <div style={cardFeatured}>
           <div style={numRowFeatured}>

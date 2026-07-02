@@ -37,6 +37,7 @@ window.RP = {
       contact: "Contact",
     },
     joinButton: "Join our team →",
+    applyButton: "Apply Now",
   },
 
   /* ---- HERO (big banner at the very top) ------------------------------- */

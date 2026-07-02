@@ -21,9 +21,11 @@ function PerksAndTraining() {
     lineHeight: 1.55, margin: '14px auto 0', maxWidth: '58ch',
   };
 
+  /* Column layout and gutters live in styles.css (.rp-perks-grid) so the
+     mobile media query can collapse the cards to a single column. */
   const grid = {
-    maxWidth: 1200, margin: '0 auto', padding: '0 64px',
-    display: 'grid', gridTemplateColumns: '1.15fr 0.85fr', gap: 32, alignItems: 'stretch',
+    maxWidth: 1200, margin: '0 auto',
+    display: 'grid', gap: 32, alignItems: 'stretch',
   };
 
   // Play hard — photo card
@@ -144,7 +146,7 @@ function PerksAndTraining() {
         <p style={sub}>{C.sub}</p>
       </div>
 
-      <div style={grid}>
+      <div className="rp-perks-grid" style={grid}>
         {/* LEFT — Annual summer party photo card */}
         <div style={photoCard}>
           <img src="assets/photos/patrollers-dinner.jpg" alt="" style={photoImg} />

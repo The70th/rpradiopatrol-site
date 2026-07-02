@@ -1,6 +1,11 @@
 # Rosedale Park Radio Patrol #23 — Website
 
-This is the public website for Rosedale Park Radio Patrol #23, a volunteer neighborhood watch organization serving Rosedale Park in Detroit, MI (sanctioned by DPD). It is a static site — plain HTML, CSS, and JSX components served as-is, with no build step. It's hosted for free on GitHub Pages.
+This is the public website for Rosedale Park Radio Patrol #23, a volunteer neighborhood watch organization serving Rosedale Park in Detroit, MI (sanctioned by DPD). It is a static site — plain HTML, CSS, and JSX components served as-is, with no build step. It's hosted for free on Vercel and lives at **rpradiopatrol.org**.
+
+The site has two pages:
+
+- **`index.html`** — the main page. Everything described below is about this page.
+- **`apply.html`** — the membership application form. Its body text is written directly in that file (not in `content.js`), but it shares the exact same header (`Header.jsx`) as the main page, so header changes show up on both pages automatically.
 
 ## Preview the site on your computer
 
@@ -11,17 +16,19 @@ You have two easy options:
 
 ## Editing text
 
-Each section of the page is its own file. Open the file, find the text you want to change, edit it between the quotes or tags, and save. Then refresh your browser.
+All of the wording on the main page lives in one file, **`content.js`** — see `EDITING_COPY.md` for the simple how-to. The table below shows which file *builds* each section, for when you need to change a photo or the layout rather than the words.
 
 | Section on the page | File to edit |
 |---|---|
-| Top bar with logo and phone number | `Header.jsx` |
+| Header — logo, menu links, and the gold "Apply Now" button (shared by both pages; collapses to a hamburger menu on phones) | `Header.jsx` |
 | Big hero photo and headline | `Hero.jsx` |
 | Info strip under the hero | `InfoBar.jsx` |
 | "How to Join" steps | `HowToJoin.jsx` |
 | "Perks and Training" section | `PerksAndTraining.jsx` |
 | Frequently Asked Questions | `FAQ.jsx` |
 | Bottom of page | `Footer.jsx` |
+
+A note about the footer: it no longer shows the **Emergency · 911** line or the **RPRadioPatrol@gmail.com** link. That column was removed on purpose — a comment in `Footer.jsx` marks the spot where a "Contact Us" form is planned in a future update.
 
 The visual styling (colors, fonts, spacing) lives in `colors_and_type.css` and `styles.css`. You usually won't need to touch these.
 
@@ -36,7 +43,7 @@ Tip: keep filenames lowercase with dashes (e.g. `summer-picnic.jpg`), no spaces.
 
 ## Publishing changes (going live)
 
-This repo is wired up so that **any change pushed to the `main` branch automatically goes live** within about a minute. The workflow that does this lives at `.github/workflows/deploy.yml` — you don't need to run it manually.
+The live site is hosted on **Vercel** at **rpradiopatrol.org**. Vercel watches this GitHub repository, so **any change pushed to the `main` branch automatically goes live** within about a minute. There is nothing to run manually (the small `vercel.json` file holds the hosting settings — leave it alone).
 
 To push changes:
 
@@ -46,7 +53,9 @@ git commit -m "Update FAQ wording"
 git push
 ```
 
-You can watch the deploy on GitHub under the **Actions** tab. Once it finishes, refresh the live site URL.
+You can watch the deploy at **vercel.com** — log in, open the project, and look at the **Deployments** tab. Once it shows "Ready", refresh rpradiopatrol.org.
+
+Heads-up: the repo also contains an older GitHub Pages workflow at `.github/workflows/deploy.yml`. It publishes a legacy/mirror copy of the site on GitHub Pages, but that is **not** the real site — Vercel + rpradiopatrol.org is the one that matters. The workflow file is left in place on purpose; you can ignore it.
 
 ## First-time setup (only once)
 
@@ -62,20 +71,16 @@ If this folder hasn't been pushed to GitHub yet:
    git remote add origin https://github.com/YOUR-USERNAME/rpradiopatrol-site.git
    git push -u origin main
    ```
-3. On GitHub, go to **Settings → Pages**, and under "Build and deployment" set the **Source** to **GitHub Actions**.
-4. The first push will trigger the deploy. The site will be live at `https://YOUR-USERNAME.github.io/rpradiopatrol-site/`.
+3. At **vercel.com**, log in (signing in with the GitHub account is easiest), choose **Add New → Project**, and import the `rpradiopatrol-site` repository. Accept the defaults — there is no build step.
+4. From then on, every push to `main` deploys automatically.
 
 ## Using a custom domain (e.g. rpradiopatrol.org)
 
-1. In this folder, create a file named `CNAME` (no extension) containing just the bare domain on a single line, for example:
-   ```
-   rpradiopatrol.org
-   ```
-2. Commit and push. GitHub will pick it up automatically.
-3. At your domain registrar, point the domain at GitHub Pages by adding these DNS records:
-   - **A** records for `@` pointing to: `185.199.108.153`, `185.199.109.153`, `185.199.110.153`, `185.199.111.153`
-   - A **CNAME** record for `www` pointing to `YOUR-USERNAME.github.io`
-4. Back on GitHub under **Settings → Pages**, enter the custom domain and check "Enforce HTTPS" once the certificate is ready.
+The domain is managed in **Vercel**, not GitHub. `rpradiopatrol.org` is already set up this way — you only need these steps if the domain or the registrar ever changes:
+
+1. In the Vercel dashboard, open the project and go to **Settings → Domains**, then add the domain (e.g. `rpradiopatrol.org`).
+2. Vercel will show the exact DNS records to add at the domain registrar (typically one **A** record for the bare domain and a **CNAME** for `www`). Copy them into the registrar's DNS settings.
+3. Wait for the check next to the domain in Vercel to turn green. HTTPS is set up automatically — nothing extra to do.
 
 ## Questions?
 

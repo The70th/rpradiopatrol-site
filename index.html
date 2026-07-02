@@ -12,8 +12,16 @@
   <link rel="stylesheet" href="colors_and_type.css">
   <link rel="stylesheet" href="styles.css">
   <style>
+    /* Patrol Map section padding lives here (not inline) so the mobile media
+       query below can reduce it. Breakpoint matches styles.css (860px). */
+    .rp-patrol { padding: 96px 0 104px; }
+    .rp-patrol-inner { padding: 0 32px; }
     .rp-patrol-iframe { width: 100%; height: 450px; border: 0; border-radius: 8px; display: block; }
-    @media (max-width: 768px) { .rp-patrol-iframe { height: 300px; } }
+    @media (max-width: 860px) {
+      .rp-patrol { padding: 56px 0 64px; }
+      .rp-patrol-inner { padding: 0 20px; }
+      .rp-patrol-iframe { height: 300px; }
+    }
   </style>
   <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
   <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
@@ -33,13 +41,12 @@
   <script type="text/babel">
     function PatrolMap() {
       const sectionStyle = {
-        padding: '96px 0 104px',
         background: 'var(--stone-50)',
         color: 'var(--fg)',
         borderTop: '4px solid var(--gold-600)',
         borderBottom: '4px solid var(--gold-600)',
       };
-      const innerStyle = { maxWidth: 1100, margin: '0 auto', padding: '0 32px' };
+      const innerStyle = { maxWidth: 1100, margin: '0 auto' };
       const headStyle = { textAlign: 'center', marginBottom: 32 };
       const eyebrowStyle = {
         fontFamily: 'var(--font-sans)', fontSize: 12, fontWeight: 700,
@@ -79,8 +86,8 @@
       };
 
       return (
-        <section id="patrol-map" style={sectionStyle}>
-          <div style={innerStyle}>
+        <section id="patrol-map" className="rp-patrol" style={sectionStyle}>
+          <div className="rp-patrol-inner" style={innerStyle}>
             <div style={headStyle}>
               <div style={eyebrowStyle}>{RP.patrolMap.eyebrow}</div>
               <h2 style={h2Style}>{RP.patrolMap.heading}</h2>
@@ -110,6 +117,15 @@
     }
 
     function App() {
+      // Anchor targets (#join, #patrol-map, …) don't exist until React renders,
+      // so links arriving from other pages (e.g. apply.html) would land at the
+      // top. Re-scroll to the hash once the sections are in the DOM.
+      React.useEffect(() => {
+        if (window.location.hash) {
+          const el = document.getElementById(window.location.hash.slice(1));
+          if (el) el.scrollIntoView();
+        }
+      }, []);
       return (
         <div className="rp-page">
           <Header />

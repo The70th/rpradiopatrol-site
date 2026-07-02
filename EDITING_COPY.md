@@ -30,6 +30,18 @@ headlineBottom: "Rosedale Park.",
 
 That's the whole job.
 
+## Two notes about the header and footer
+
+- The gold **Apply Now** button that is always visible in the header (on both the main
+  page and the application page) gets its text from `header.applyButton`.
+- The footer's old "Contact" column — the **Emergency · 911** line and the
+  RPRadioPatrol@gmail.com link — was **removed on purpose**. A "Contact Us" form is
+  planned for that spot in a future update (there's a note saying so inside `Footer.jsx`).
+  Because of that, a few keys in `content.js` are currently not shown anywhere on the site:
+  `emergencyText`, `emergencyNumber`, `email`, and `joinButton` in the `header` section, and
+  `contactHeading`, `emergencyLabel`, `emergencyValue`, and `email` in the `footer` section.
+  Editing those won't change anything on the site — that's expected, not a bug.
+
 ## Three rules that keep things from breaking
 
 1. **Keep both quotation marks** around your text: `title: "Your words here",`
@@ -66,12 +78,16 @@ The same pattern applies to the `infoBar.steps`, the `perks.training.sessions`, 
 - **Colors, fonts, and spacing** — those live in `colors_and_type.css` and `styles.css`.
 - **The application form** (`apply.html`) — that's a separate page with its own text, including
   the legally-required Privacy Act notice. Ask before changing that page's wording.
+  (One exception: the header at the top of `apply.html` is the same shared header as the main
+  page — it is no longer its own hand-copied copy — so its menu labels and the Apply Now button
+  *do* come from the `header` section of this file.)
 - **Photos and the logo** — those are image files in the `assets/` folder.
 
 ## How it works under the hood (for a future maintainer)
 
-`index.html` loads `content.js` *before* it loads the component files. `content.js` defines a
-single global object, `window.RP`, that holds every piece of text. Each component
+`index.html` loads `content.js` *before* it loads the component files (`apply.html` does the
+same, for the shared header). `content.js` defines a single global object, `window.RP`, that
+holds every piece of text. Each component
 (`Header.jsx`, `Hero.jsx`, etc.) reads its words from `RP` instead of having them written
 inline. So there is exactly one source of truth for copy, and the components only handle layout.
 

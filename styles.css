@@ -4,18 +4,6 @@
 
 /* ===== Header ===== */
 .rp-header { position: sticky; top: 0; z-index: 20; }
-.rp-strip {
-  background: var(--forest-950);
-  color: var(--gold-300);
-  font-family: var(--font-mono);
-  font-size: 12px;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  padding: 8px 32px;
-  display: flex; gap: 14px; align-items: center; justify-content: center;
-}
-.rp-strip b { color: var(--gold-500); }
-.rp-strip .sep { color: var(--forest-600); }
 .rp-nav {
   background: rgba(28, 59, 46, 0.96);
   backdrop-filter: blur(8px);
@@ -34,7 +22,43 @@
   transition: border-color var(--dur) var(--ease), color var(--dur) var(--ease);
 }
 .rp-nav nav a:hover { border-color: var(--gold-600); color: var(--gold-300); }
-.rp-nav > .rp-btn-primary { margin-left: auto; }
+
+/* Hamburger toggle — mobile only (shown ≤860px) */
+.rp-nav-toggle {
+  display: none;
+  background: transparent; border: 0; cursor: pointer;
+  min-width: 44px; min-height: 44px; padding: 10px;
+  align-items: center; justify-content: center;
+}
+.rp-nav-toggle-icon { display: flex; flex-direction: column; gap: 5px; width: 24px; }
+.rp-nav-toggle-icon span {
+  display: block; height: 2px; width: 100%; border-radius: 1px;
+  background: var(--stone-50);
+  transition: transform var(--dur) var(--ease), opacity var(--dur) var(--ease);
+}
+.rp-nav-toggle-icon.is-open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.rp-nav-toggle-icon.is-open span:nth-child(2) { opacity: 0; }
+.rp-nav-toggle-icon.is-open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+/* Mobile dropdown panel (rendered by Header.jsx when the toggle is open) */
+.rp-mobile-menu {
+  position: absolute; top: 100%; left: 0; right: 0;
+  background: var(--forest-900);
+  border-bottom: 2px solid var(--gold-600);
+  box-shadow: 0 12px 24px rgba(12, 31, 23, 0.35);
+  display: flex; flex-direction: column;
+  padding: 8px 0 12px;
+}
+.rp-mobile-menu a {
+  color: var(--stone-100); text-decoration: none;
+  font-size: 15px; font-weight: 600;
+  text-transform: uppercase; letter-spacing: 0.06em;
+  padding: 14px 24px; min-height: 44px;
+  display: flex; align-items: center;
+  border-bottom: 1px solid var(--forest-800);
+}
+.rp-mobile-menu a:last-child { border-bottom: 0; }
+.rp-mobile-menu a:hover { color: var(--gold-300); background: var(--forest-800); }
 
 /* ===== Buttons ===== */
 .rp-btn {
@@ -54,6 +78,17 @@
 .rp-btn-secondary.is-claimed { background: var(--success-bg); color: var(--success); border-color: var(--success); }
 .rp-btn-ghost-light { background: transparent; color: var(--stone-100); border-color: var(--stone-100); padding: 14px 24px; font-size: 16px; }
 .rp-btn-ghost-light:hover { background: rgba(255,255,255,0.08); }
+/* Persistent header Apply CTA — the most prominent header element on all pages.
+   Must come after .rp-btn so its overrides win the cascade. */
+.rp-btn-apply {
+  background: var(--gold-600); color: var(--forest-900);
+  font-size: 15px; font-weight: 800; text-transform: uppercase;
+  letter-spacing: 0.04em; padding: 10px 22px; min-height: 44px;
+  white-space: nowrap;
+  box-shadow: 0 2px 10px rgba(200, 162, 75, 0.35);
+}
+.rp-btn-apply:hover { background: var(--gold-500); transform: translateY(-1px); }
+.rp-nav .rp-btn-apply { margin-left: auto; }
 
 /* ===== Hero ===== */
 .rp-hero {
@@ -243,7 +278,12 @@
 .rp-join { padding: 80px 0; background: var(--forest-800); color: var(--stone-50); border-bottom: 1px solid var(--border); }
 .rp-join .rp-section-head h2 { color: var(--white); }
 .rp-join .rp-eyebrow { color: var(--gold-400); }
-.rp-join-grid { max-width: 1100px; margin: 0 auto; padding: 0 64px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; }
+/* Column count + gutters for the How To Join cards (markup in HowToJoin.jsx);
+   kept in CSS rather than inline style so the mobile media query can override. */
+.rp-join-grid { grid-template-columns: repeat(3, 1fr); padding: 0 64px; }
+
+/* Same pattern for the Perks & Training two-card grid (PerksAndTraining.jsx). */
+.rp-perks-grid { grid-template-columns: 1.15fr 0.85fr; padding: 0 64px; }
 .rp-join-step { border-top: 2px solid var(--gold-600); padding-top: 20px; }
 .rp-join-num { font-family: var(--font-mono); font-size: 13px; color: var(--gold-400); letter-spacing: 0.15em; margin-bottom: 10px; }
 .rp-join-step h3 { font-family: var(--font-display); text-transform: uppercase; font-size: 22px; color: var(--white); margin: 0 0 8px; line-height: 1.15; }
@@ -253,10 +293,12 @@
 
 /* ===== Footer ===== */
 .rp-footer { background: var(--forest-950); color: var(--stone-200); padding: 64px 64px 28px; border-top: 4px solid var(--gold-600); }
-.rp-footer-top { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 2fr; gap: 64px; }
+/* Two areas: brand text (grows) + the Neighbors column (compact, right).
+   The old Contact column was removed pending a future "Contact Us" form. */
+.rp-footer-top { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr auto; gap: 64px; }
 .rp-footer-brand img { height: 40px; margin-bottom: 20px; }
 .rp-footer-brand p { font-size: 14px; line-height: 1.6; color: var(--stone-300); max-width: 40ch; }
-.rp-footer-cols { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; }
+.rp-footer-cols { display: grid; grid-template-columns: 1fr; gap: 32px; }
 .rp-footer-cols h5 { font-family: var(--font-sans); font-weight: 700; font-size: 12px; text-transform: uppercase; letter-spacing: var(--tracking-widest); color: var(--gold-500); margin: 0 0 14px; }
 .rp-footer-cols ul { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 6px; font-size: 14px; }
 .rp-footer-cols ul li { color: var(--stone-300); }
@@ -266,14 +308,19 @@
 .rp-footer-bottom { max-width: 1200px; margin: 48px auto 0; padding-top: 20px; border-top: 1px solid var(--forest-800); display: flex; justify-content: space-between; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--stone-500); }
 .rp-callsign { color: var(--gold-600); }
 
+/* Single site-wide mobile breakpoint: 860px. Keep every page's inline
+   media queries on this same value. */
 @media (max-width: 860px) {
   .rp-hero { grid-template-columns: 1fr; padding: 64px 28px; }
   .rp-hero-stamp { display: none; }
-  .rp-nav { flex-wrap: wrap; gap: 16px; padding: 12px 20px; }
-  .rp-nav nav { order: 3; width: 100%; overflow-x: auto; }
+  .rp-nav { gap: 16px; padding: 10px 16px; }
+  .rp-nav nav { display: none; }
+  .rp-nav-toggle { display: inline-flex; }
   .rp-section-head, .rp-infobar-grid, .rp-shift-list, .rp-news-list, .rp-faq-list { padding-left: 24px; padding-right: 24px; }
   .rp-infobar-grid, .rp-news-list { grid-template-columns: 1fr; }
+  .rp-join-grid { grid-template-columns: 1fr; padding: 0 24px; }
+  .rp-perks-grid { grid-template-columns: 1fr; padding: 0 24px; }
+  .rp-shift { grid-template-columns: 1fr; }
   .rp-footer { padding: 48px 24px 24px; }
   .rp-footer-top { grid-template-columns: 1fr; gap: 40px; }
-  .rp-footer-cols { grid-template-columns: 1fr 1fr; }
 }

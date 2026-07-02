@@ -8,6 +8,11 @@
   <link rel="icon" type="image/png" href="assets/logo-forest-transparent.png">
   <link rel="stylesheet" href="colors_and_type.css">
   <link rel="stylesheet" href="styles.css">
+  <!-- React + Babel (same CDN pins as index.html) — used only to render the
+       shared site header from Header.jsx, the single source of truth. -->
+  <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
   <style>
     .rp-apply { padding: 64px 0 96px; background: var(--stone-50); }
     .rp-apply-inner { max-width: 880px; margin: 0 auto; padding: 0 32px; }
@@ -120,7 +125,8 @@
     .rp-status.is-success { background: var(--success-bg); color: var(--success); }
     .rp-status.is-busy { background: var(--info-bg); color: var(--info); }
 
-    @media (max-width: 700px) {
+    /* Breakpoint matches the site-wide 860px in styles.css. */
+    @media (max-width: 860px) {
       .rp-grid-2, .rp-grid-3, .rp-grid-4 { grid-template-columns: 1fr; }
       .rp-apply-inner { padding: 0 20px; }
     }
@@ -128,25 +134,9 @@
 </head>
 <body>
   <div class="rp-page">
-    <header class="rp-header">
-      <div class="rp-strip">
-        <span>Emergency · call <b>911</b></span>
-        <span class="sep">·</span>
-        <span>RPRadioPatrol@gmail.com</span>
-      </div>
-      <div class="rp-nav">
-        <a href="index.html" class="rp-mark">
-          <img src="assets/logo-forest-transparent.png" alt="Radio Patrol — Rosedale Park" />
-        </a>
-        <nav>
-          <a href="index.html#about">About</a>
-          <a href="index.html#join">How to join</a>
-          <a href="index.html#faq">FAQ</a>
-          <a href="index.html#contact">Contact</a>
-        </nav>
-        <a href="index.html" class="rp-btn rp-btn-primary">← Back to home</a>
-      </div>
-    </header>
+    <!-- Shared site header: rendered by Header.jsx (see scripts at the bottom
+         of this file). Do not hand-copy header markup here. -->
+    <div id="header-root"></div>
 
     <main class="rp-apply">
       <div class="rp-apply-inner">
@@ -363,14 +353,10 @@
           <img src="assets/logo-white.png" alt="Radio Patrol" />
           <p>A volunteer civilian patrol serving the Rosedale Park neighborhood of Detroit, sanctioned by the Detroit Police Department under the Citizens Radio Patrol Program.</p>
         </div>
+        <!-- Contact column removed intentionally — a "Contact Us" form is planned
+             for this spot in a future iteration. The footer keeps id="contact" as
+             the anchor for the header's Contact nav link and the future form. -->
         <div class="rp-footer-cols">
-          <div>
-            <h5>Contact</h5>
-            <ul>
-              <li><b>Emergency</b> · 911</li>
-              <li><a href="mailto:RPRadioPatrol@gmail.com">RPRadioPatrol@gmail.com</a></li>
-            </ul>
-          </div>
           <div>
             <h5>Neighbors</h5>
             <ul>
@@ -528,6 +514,14 @@
         }
       });
     })();
+  </script>
+
+  <!-- Render the shared header (single source of truth: Header.jsx).
+       content.js supplies the nav labels and CTA text. -->
+  <script src="content.js"></script>
+  <script type="text/babel" src="Header.jsx"></script>
+  <script type="text/babel">
+    ReactDOM.createRoot(document.getElementById('header-root')).render(<Header/>);
   </script>
 </body>
 </html>

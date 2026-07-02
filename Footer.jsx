@@ -7,14 +7,10 @@ function Footer() {
           <img src="assets/logo-white.png" alt="Radio Patrol" />
           <p>{C.brand}</p>
         </div>
+        {/* Contact column removed intentionally — a "Contact Us" form is planned
+            for this spot in a future iteration. The footer keeps id="contact" as
+            the anchor for the header's Contact nav link and the future form. */}
         <div className="rp-footer-cols">
-          <div>
-            <h5>{C.contactHeading}</h5>
-            <ul>
-              <li><b>{C.emergencyLabel}</b> · {C.emergencyValue}</li>
-              <li><a href={`mailto:${C.email}`}>{C.email}</a></li>
-            </ul>
-          </div>
           <div>
             <h5>{C.neighborsHeading}</h5>
             <ul>
