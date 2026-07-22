@@ -15,7 +15,7 @@ function Footer() {
             <h5>{C.neighborsHeading}</h5>
             <ul>
               {C.neighbors.map((n, i) => (
-                <li key={i}><a href={n.href}>{n.label}</a></li>
+                <li key={i}><a href={n.href} target="_blank" rel="noopener noreferrer">{n.label}</a></li>
               ))}
             </ul>
           </div>

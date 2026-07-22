@@ -153,6 +153,10 @@ window.RP = {
       mostRecentBadge: "Most recent",
       sessions: [
         {
+          title: "Jazz in the Grass",
+          sub: "Radio Patroller social lunch and jazz performance.",
+        },
+        {
           title: "Narcan & opioid response",
           sub: "How to recognize an overdose and administer Narcan.",
         },
@@ -229,10 +233,10 @@ window.RP = {
     email: "RPRadioPatrol@gmail.com",
     neighborsHeading: "Neighbors",
     neighbors: [
-      { label: "Rosedale Park Improvement Assn.", href: "#" },
-      { label: "North Rosedale Park Civic Assn.", href: "#" },
-      { label: "Grandmont-Rosedale CDC", href: "#" },
-      { label: "DPD 8th Precinct", href: "#" },
+      { label: "Rosedale Park Improvement Assn.", href: "https://www.rosedalepark.org" },
+      { label: "North Rosedale Park Civic Assn.", href: "https://www.nrpca.org" },
+      { label: "Grandmont-Rosedale CDC", href: "https://www.grandmontrosedale.com" },
+      { label: "Precincts and NPOs", href: "https://detroitmi.gov/departments/police-department/precincts-and-neighborhood-police-officers#block-detroitminew-views-block-contacts-block-4" },
     ],
     copyright: "© 2026 Rosedale Park Radio Patrol",
     callsign: "RP-BASE · 10-4",
